@@ -42,11 +42,9 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 export default function Layout({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data } = useSession();
-  console.log("session data: ", data);
+  // console.log("session data: ", data);
 
-  const filter =(url)=>{
-    let regex = /https:\/\/avatars\.githubusercontent\.com\/u\/49971500\?v=4/i
-  }
+
 
   return (
     <>
@@ -95,11 +93,15 @@ export default function Layout({ children }: { children: ReactNode }) {
                 minW={0}
               >
                 {/* "https://avatars.githubusercontent.com/u/49971500?v=4" */}
-                <Avatar size={"sm"} src={data.user.image} />
+                <Avatar
+                  size={"sm"}
+                  name={data?.user?.name ?? ""}
+                  src={data?.user?.image ?? "/blank-profile-pic.png"}
+                />
               </MenuButton>
               <MenuList>
-                <MenuItem>{data.user.name}</MenuItem>
-                <MenuItem>{data.user.email}</MenuItem>
+                <MenuItem>{data?.user?.name?? ""}</MenuItem>
+                <MenuItem>{data?.user?.email?? ""}</MenuItem>
                 <MenuDivider />
                 <MenuItem>
                   {" "}
